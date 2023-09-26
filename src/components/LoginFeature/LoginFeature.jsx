@@ -31,10 +31,12 @@ const LoginFeature = () => {
         const data = response.data;
         if (data && data.access_token) {
           // Tampilkan pesan sukses atau navigasi ke halaman lain
+
+          localStorage.setItem("token", data.data.access_token);
+          console.log(localStorage.getItem("token"));
           navigate("/dashboard-page");
           alert("Login berhasil!");
         } else {
-          
           console.error("Tidak ada respon");
           setLoginFailed(true);
         }
