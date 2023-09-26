@@ -28,11 +28,12 @@ const LoginFeature = () => {
       });
 
       if (response.status === 201) {
-        const data = response.data;
-        if (data && data.access_token) {
+        // response = { status: 201, data: { access_token: '', email: '' , role: '' } }
+        const loginResponse = response.data;
+        if (loginResponse && loginResponse.access_token) {
           // Tampilkan pesan sukses atau navigasi ke halaman lain
 
-          localStorage.setItem("token", data.data.access_token);
+          localStorage.setItem("token", loginResponse.access_token);
           console.log(localStorage.getItem("token"));
           navigate("/dashboard-page");
           alert("Login berhasil!");
