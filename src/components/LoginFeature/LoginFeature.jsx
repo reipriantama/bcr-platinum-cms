@@ -4,12 +4,15 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import api from "../../api";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { logout, registerAuth } from "../../store/Auth";
 
 const LoginFeature = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false); // State untuk pesan login gagal
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -31,9 +34,8 @@ const LoginFeature = () => {
         // response = { status: 201, data: { access_token: '', email: '' , role: '' } }
         const loginResponse = response.data;
         if (loginResponse && loginResponse.access_token) {
-          // Tampilkan pesan sukses atau navigasi ke halaman lain
-
           localStorage.setItem("token", loginResponse.access_token);
+          dispatch(registerAuth(loginResponse));
           console.log(localStorage.getItem("token"));
           navigate("/dashboard-page");
           alert("Login berhasil!");
@@ -44,15 +46,18 @@ const LoginFeature = () => {
       } else if (response.status === 401) {
         // Handle kesalahan otentikasi (misalnya, email atau password salah)
         console.error("Login gagal: Email atau password salah");
+        dispatch(logout("Email atau password salah"));
         setLoginFailed(true);
       } else {
         // Handle kesalahan lainnya
         console.error("Kesalahan server");
+        dispatch(logout("Kesalahan server"));
         setLoginFailed(true);
       }
     } catch (error) {
       // Handle kesalahan jaringan di sini
       console.error("Network error", error);
+      dispatch(logout("Network error"));
       setLoginFailed(true);
     }
   };
