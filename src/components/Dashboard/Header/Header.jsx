@@ -5,31 +5,27 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-// import {Logo} from '../../../assets';
+import styles from './Header.module.css'
 
 const Header = () => {
   return (
     <Navbar expand="lg" className="fixed-top shadow-sm bg-white">
       <Container>
-        {/* <img src={Logo} alt="logo"/> */}
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <img className={styles.logo} src={`${process.env.PUBLIC_URL}/Assets/Dashboard/Logo.png`} alt="logo"/>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />  
+        <Nav.Link href='#home'>
+          <img className={styles.menuButton} src={`${process.env.PUBLIC_URL}/Assets/Dashboard/fi_menu.png`} alt="menu"/>
+        </Nav.Link>
         <Navbar.Collapse className="justify-content-end">
           <Nav>
-            <Form inline>
-                <Row>
-                    <Col xs="auto">
-                        <Form.Control
-                        type="text"
-                        placeholder="Search"
-                        className=" mr-sm-2"
-                        />
-                    </Col>
-                    <Col xs="auto">
-                        <Button variant='outline-primary'>Search</Button>
-                    </Col>
-                </Row>
+            <Form className="d-flex">
+                  <Form.Control
+                    type="search"
+                    placeholder="Search"
+                    className="me-2"
+                    aria-label="Search"
+                  />
+                  <Button className={styles.searchButton} variant="outline-primary">Search</Button>
             </Form>
             <Nav.Link href="#link">Bang Eko</Nav.Link>
             <NavDropdown id="basic-nav-dropdown">
