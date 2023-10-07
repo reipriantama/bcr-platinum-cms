@@ -7,7 +7,7 @@ const handler = axios.create({
 
 handler.interceptors.request.use((request) => {
   if (request.url !== "admin/auth/login") {
-    request.headers["acces_token"] = `${localStorage.getItem("token")}`;
+    request.headers["access_token"] = `${localStorage.getItem("token")}`;
   }
 
   return request;

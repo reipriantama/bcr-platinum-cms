@@ -1,0 +1,44 @@
+.dashboardTitle {
+  display: flex;
+  font-family: Arial;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 20px;
+  gap: 8px;
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+.dashboardIcon {
+  width: 4px;
+  height: 24px;
+  background: var(--primary-dark-blue-04, #0d28a6);
+}
+
+.dropDownWrap {
+  margin-left: 20px;
+}
+
+.monthDrop {
+  color: #000;
+  border-radius: 2px 0px 0px 2px;
+  border: 1px solid var(--neutral-02, #d0d0d0);
+  background: none;
+  padding: 8px 12px;
+}
+
+.dropToggle {
+  border: 1px solid var(--neutral-02, #d0d0d0);
+  border-radius: 0px 2px 2px 0px; /* Biarkan border pada sisi kanan */
+  background-color: #fff !important; /* Atur latar belakang menjadi putih */
+  color: #000 !important; /* Atur warna teks menjadi hitam */
+}
+
+.buttonGo {
+  height: 42px;
+  width: 42px;
+  border-radius: 0px 2px 2px 0px;
+  border: none;
+  background: var(--primary-dark-blue-04, #0d28a6);
+}
