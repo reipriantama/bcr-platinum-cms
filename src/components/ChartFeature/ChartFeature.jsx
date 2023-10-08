@@ -5,6 +5,7 @@ import styles from "./ChartFeature.module.css";
 import moment from "moment";
 import ReactApexChart from "react-apexcharts";
 import api from "../../api";
+import { FaChevronRight } from "react-icons/fa";
 
 const ChartFeature = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
@@ -30,7 +31,11 @@ const ChartFeature = () => {
         .getReports({ from: fromDate, until: untilDate })
         .then((response) => {
           const dailyReports = response.data;
-          const orderCounts = dailyReports.map((report) => report.orderCount);
+          console.log(dailyReports)
+          const orderCounts = dailyReports.map((report) => ({
+            x: moment(report.day, "YYYY-MM-DD").format("DD"),
+            y: report.orderCount,
+          }));
           setChartData(orderCounts);
         })
         .catch((error) => {
@@ -97,63 +102,79 @@ const ChartFeature = () => {
   ];
 
   return (
-    <div>
+    <div className={styles.container}>
+      {/* Pindahkan ke component Breadcrumbs (useLocation hook) */}
       <div className={styles.dashboardTitle}>
-        <div className={styles.dashboardIcon}></div>
-        <div>Rented Car Data Visualization</div>
+        <div>Dashboard</div>
+        <div>
+          {" "}
+          <FaChevronRight />{" "}
+        </div>
+        <div style={{ fontWeight: "300", lineHeight: "18px" }}>Dashboard</div>
       </div>
 
-      <Dropdown className={styles.dropDownWrap}>
-        <div
-          style={{ fontFamily: "Arial", fontSize: "12px", marginBottom: "8px" }}
-        >
-          Month
+      <div className={styles.dashboardChart}>
+        <div className={styles.dashboardVisualization}>
+          <div className={styles.dashboardIcon}></div>
+          <div>Rented Car Data Visualization</div>
         </div>
-        <Dropdown.Toggle
-          variant="success"
-          id="dropdown-basic"
-          className={styles.monthDrop}
-        >
-          {selectedMonth} {selectedYear}
-        </Dropdown.Toggle>
-        {/* Tombol "Go" akan selalu muncul */}
-        <Button
-          className={styles.buttonGo}
-          variant="primary"
-          onClick={handleGoClick}
-        >
-          Go
-        </Button>
 
-        <Dropdown.Menu>
-          {years.map((year) => (
-            <React.Fragment key={year}>
-              {months.map((month, index) => (
-                <Dropdown.Item
-                  key={index}
-                  onClick={() => {
-                    setSelectedMonth(month);
-                    setSelectedYear(year);
-                  }}
-                >
-                  {month} {year}
-                </Dropdown.Item>
-              ))}
-            </React.Fragment>
-          ))}
-        </Dropdown.Menu>
-      </Dropdown>
-      {/* Tampilkan grafik jika data tersedia */}
-      {chartData.length > 0 && (
-        <div id="chart">
-          <ReactApexChart
-            options={chartOptions}
-            series={chartSeries}
-            type="bar"
-            height={350}
-          />
-        </div>
-      )}
+        <Dropdown className={styles.dropDownWrap}>
+          <div
+            style={{
+              fontFamily: "Arial",
+              fontSize: "12px",
+              marginBottom: "8px",
+            }}
+          >
+            Month
+          </div>
+          <Dropdown.Toggle
+            variant="success"
+            id="dropdown-basic"
+            className={styles.monthDrop}
+          >
+            {selectedMonth} {selectedYear}
+          </Dropdown.Toggle>
+          {/* Tombol "Go" akan selalu muncul */}
+          <Button
+            className={styles.buttonGo}
+            variant="primary"
+            onClick={handleGoClick}
+          >
+            Go
+          </Button>
+
+          <Dropdown.Menu>
+            {years.map((year) => (
+              <React.Fragment key={year}>
+                {months.map((month, index) => (
+                  <Dropdown.Item
+                    key={index}
+                    onClick={() => {
+                      setSelectedMonth(month);
+                      setSelectedYear(year);
+                    }}
+                  >
+                    {month} {year}
+                  </Dropdown.Item>
+                ))}
+              </React.Fragment>
+            ))}
+          </Dropdown.Menu>
+        </Dropdown>
+        {/* Tampilkan grafik jika data tersedia */}
+        {chartData.length > 0 && (
+          <div id="chart">
+            <ReactApexChart
+              options={chartOptions}
+              series={chartSeries}
+              type="bar"
+              height={350}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
