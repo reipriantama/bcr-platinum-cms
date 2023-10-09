@@ -1,6 +1,7 @@
 import { Navigate } from "react-router";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
+import Base from "../pages/Base";
 
 const routes = [
   {
@@ -13,7 +14,13 @@ const routes = [
   },
   {
     path: "dashboard-page",
-    element: <DashboardPage />,
+    element: <Base />,
+    children: [
+      {
+        path: "",
+        element: <DashboardPage />,
+      },
+    ],
   },
 ];
 
