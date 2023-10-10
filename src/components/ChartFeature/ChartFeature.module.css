@@ -2,6 +2,8 @@
   margin-top: 56px;
 }
 
+<<<<<<< HEAD
+=======
 .dashboardTitle {
   display: flex;
   gap: 4px;
@@ -17,6 +19,7 @@
   line-height: 18px; /* 150% */
 }
 
+>>>>>>> f2a435545c7782c4ae4d9ad66563a1256829c75a
 .dashboardChart {
   margin-top: 60px;
   margin-left: 327px;

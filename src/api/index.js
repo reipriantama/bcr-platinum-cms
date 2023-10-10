@@ -10,6 +10,11 @@ const api = {
   putCarById: (id, body) => handler.put(`/admin/car/${id}`, body),
   getReports: (queryParams) =>
     handler.get("/admin/order/reports", { params: queryParams }),
+<<<<<<< HEAD
+  getOrder: (queryParams) =>
+    handler.get("/admin/v2/order", { params: queryParams }),
+=======
+>>>>>>> f2a435545c7782c4ae4d9ad66563a1256829c75a
 };
 
 export default api;
