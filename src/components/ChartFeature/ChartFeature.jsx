@@ -5,6 +5,7 @@ import styles from "./ChartFeature.module.css";
 import moment from "moment";
 import ReactApexChart from "react-apexcharts";
 import api from "../../api";
+import { FaChevronRight } from "react-icons/fa";
 
 const ChartFeature = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
