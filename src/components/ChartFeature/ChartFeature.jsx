@@ -5,7 +5,11 @@ import styles from "./ChartFeature.module.css";
 import moment from "moment";
 import ReactApexChart from "react-apexcharts";
 import api from "../../api";
+<<<<<<< HEAD
 
+=======
+import { FaChevronRight } from "react-icons/fa";
+>>>>>>> f2a435545c7782c4ae4d9ad66563a1256829c75a
 
 const ChartFeature = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
@@ -31,7 +35,11 @@ const ChartFeature = () => {
         .getReports({ from: fromDate, until: untilDate })
         .then((response) => {
           const dailyReports = response.data;
+<<<<<<< HEAD
           console.log(dailyReports);
+=======
+          console.log(dailyReports)
+>>>>>>> f2a435545c7782c4ae4d9ad66563a1256829c75a
           const orderCounts = dailyReports.map((report) => ({
             x: moment(report.day, "YYYY-MM-DD").format("DD"),
             y: report.orderCount,
@@ -103,6 +111,19 @@ const ChartFeature = () => {
 
   return (
     <div className={styles.container}>
+<<<<<<< HEAD
+=======
+      {/* Pindahkan ke component Breadcrumbs (useLocation hook) */}
+      <div className={styles.dashboardTitle}>
+        <div>Dashboard</div>
+        <div>
+          {" "}
+          <FaChevronRight />{" "}
+        </div>
+        <div style={{ fontWeight: "300", lineHeight: "18px" }}>Dashboard</div>
+      </div>
+
+>>>>>>> f2a435545c7782c4ae4d9ad66563a1256829c75a
       <div className={styles.dashboardChart}>
         <div className={styles.dashboardVisualization}>
           <div className={styles.dashboardIcon}></div>
