@@ -3,7 +3,6 @@ import Base from "../pages/Base";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import CarsPage from "../pages/CarsPage/CarsPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
-import Base from "../pages/Base";
 
 const routes = [
   {
@@ -15,11 +14,7 @@ const routes = [
     element: <LoginPage />,
   },
   {
-<<<<<<< HEAD
     path: "dashboard",
-=======
-    path: "dashboard-page",
->>>>>>> f2a435545c7782c4ae4d9ad66563a1256829c75a
     element: <Base />,
     children: [
       {
@@ -27,7 +22,6 @@ const routes = [
         element: <DashboardPage />,
       },
     ],
-<<<<<<< HEAD
   },
   {
     path: "cars",
@@ -38,8 +32,6 @@ const routes = [
         element: <CarsPage />,
       },
     ],
-=======
->>>>>>> f2a435545c7782c4ae4d9ad66563a1256829c75a
   },
 ];
 
