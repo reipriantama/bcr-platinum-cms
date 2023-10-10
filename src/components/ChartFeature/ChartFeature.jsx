@@ -5,7 +5,7 @@ import styles from "./ChartFeature.module.css";
 import moment from "moment";
 import ReactApexChart from "react-apexcharts";
 import api from "../../api";
-import { FaChevronRight } from "react-icons/fa";
+
 
 const ChartFeature = () => {
   const [selectedMonth, setSelectedMonth] = useState("");
@@ -31,7 +31,7 @@ const ChartFeature = () => {
         .getReports({ from: fromDate, until: untilDate })
         .then((response) => {
           const dailyReports = response.data;
-          console.log(dailyReports)
+          console.log(dailyReports);
           const orderCounts = dailyReports.map((report) => ({
             x: moment(report.day, "YYYY-MM-DD").format("DD"),
             y: report.orderCount,
@@ -103,16 +103,6 @@ const ChartFeature = () => {
 
   return (
     <div className={styles.container}>
-      {/* Pindahkan ke component Breadcrumbs (useLocation hook) */}
-      <div className={styles.dashboardTitle}>
-        <div>Dashboard</div>
-        <div>
-          {" "}
-          <FaChevronRight />{" "}
-        </div>
-        <div style={{ fontWeight: "300", lineHeight: "18px" }}>Dashboard</div>
-      </div>
-
       <div className={styles.dashboardChart}>
         <div className={styles.dashboardVisualization}>
           <div className={styles.dashboardIcon}></div>

@@ -6,11 +6,13 @@ import api from "../../api";
 import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { logout, registerAuth } from "../../store/Auth";
+import { Spinner } from "react-bootstrap";
 
 const LoginFeature = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginFailed, setLoginFailed] = useState(false); // State untuk pesan login gagal
+  const [loading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -24,6 +26,7 @@ const LoginFeature = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true); // efek loading
     try {
       const response = await api.loginAdmin({
         email,
@@ -37,7 +40,7 @@ const LoginFeature = () => {
           localStorage.setItem("token", loginResponse.access_token);
           dispatch(registerAuth(loginResponse));
           console.log(localStorage.getItem("token"));
-          navigate("/dashboard-page");
+          navigate("/dashboard");
           alert("Login berhasil!");
         } else {
           console.error("Tidak ada respon");
@@ -59,6 +62,8 @@ const LoginFeature = () => {
       console.error("Network error", error);
       dispatch(logout("Network error"));
       setLoginFailed(true);
+    } finally {
+      setIsLoading(false); // Matikan efek loading setelah selesai
     }
   };
 
@@ -96,14 +101,22 @@ const LoginFeature = () => {
                 onChange={handlePasswordChange}
               />
             </Form.Group>
-            <Button
-              className={styles.buttonLogin}
-              variant="primary"
-              type="submit"
-              onClick={handleSubmit}
-            >
-              Sign In
-            </Button>
+            {loading ? (
+              <div className={styles.loading}>
+                <Spinner animation="border" role="status">
+                  <span className="visually-hidden">Loading...</span>
+                </Spinner>
+              </div>
+            ) : (
+              <Button
+                className={styles.buttonLogin}
+                variant="primary"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Sign In
+              </Button>
+            )}
           </Form>
         </div>
       </div>
