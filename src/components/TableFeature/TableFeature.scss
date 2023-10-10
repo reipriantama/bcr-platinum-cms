@@ -1,0 +1,18 @@
+// TableFeature.scss
+
+// Mengubah warna latar belakang header tabel
+.react-bootstrap-table th {
+    background-color: #336699; // Ganti dengan warna latar belakang yang Anda inginkan
+    color: #ffffff; // Ganti dengan warna teks yang Anda inginkan
+  }
+  
+  // Mengubah warna latar belakang baris tabel saat dihover
+  .react-bootstrap-table tbody tr:hover {
+    background-color: #f5f5f5; // Ganti dengan warna latar belakang yang Anda inginkan saat dihover
+  }
+  
+  // Mengubah warna teks pada sel tabel
+  .react-bootstrap-table td {
+    color: #333; // Ganti dengan warna teks yang Anda inginkan
+  }
+  
