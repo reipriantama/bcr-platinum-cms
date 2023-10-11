@@ -39,3 +39,15 @@
   background-color: aquamarine !important; /* Ganti dengan warna latar yang Anda inginkan */
   color: black !important; /* Ganti dengan warna teks yang Anda inginkan */
 }
+
+thead {
+  background: #CFD4ED !important;
+}
+
+:global(.table) {
+  --bs-table-bg: none;
+}
+
+td{
+  --bs-table-bg-type: var(--bs-table-striped-bg);
+}

@@ -68,6 +68,9 @@ const TableFeature = () => {
       dataField: "Car",
       text: "Car",
       sort: true,
+      formatter: (cell) => {
+        return cell ? cell: "car" 
+      }
     },
     {
       dataField: "start_rent_at",
@@ -91,6 +94,9 @@ const TableFeature = () => {
       dataField: "category",
       text: "Category",
       sort: true,
+      formatter: (cell) => {
+        return cell ? cell: "Category" 
+      }
     },
   ];
 

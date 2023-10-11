@@ -8,15 +8,31 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "./Header.module.css";
 import { logout } from "../../../store/Auth";
-import { useNavigate } from "react-router";
+import { useNavigate, createSearchParams } from "react-router-dom";
+import { useState } from "react";
 
 const Header = () => {
+  const [name, setName] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleLogout = () => {
     dispatch(logout());
     navigate("/login");
+  };
+
+  const handleChangeName = (event) => {
+    setName(event.target.value.toLowerCase());
+  };
+
+  const handleSearch = async () => {
+    console.log("Searching for:", name);
+    navigate({
+      pathname: "/cars",
+      search: createSearchParams({
+        name: name,
+      }).toString(),
+    });
   };
 
   return (
@@ -43,17 +59,27 @@ const Header = () => {
                 placeholder="Search"
                 className="me-2"
                 aria-label="Search"
+                onChange={handleChangeName}
               />
-              <Button role="button" className={styles.searchButton} variant="outline-primary">
+              <Button
+                role="button"
+                className={styles.searchButton}
+                variant="outline-primary"
+                onClick={handleSearch}
+              >
                 Search
               </Button>
             </Form>
             <Nav.Link href="#link">Admin</Nav.Link>
-              <NavDropdown id="basic-nav-dropdown">
-                <NavDropdown.Item href="#action/3.1" onClick={handleLogout} role="logout">
-                  Log Out
-                </NavDropdown.Item>
-              </NavDropdown>
+            <NavDropdown id="basic-nav-dropdown">
+              <NavDropdown.Item
+                href="#action/3.1"
+                onClick={handleLogout}
+                role="logout"
+              >
+                Log Out
+              </NavDropdown.Item>
+            </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Container>

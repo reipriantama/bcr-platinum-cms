@@ -17,7 +17,7 @@
   line-height: 20px;
 }
 
-/* .dropdown-menu {
-    left: -77px !important;
-    background-color: red !important;
-} */
+:global(.dropdown-menu) {
+  top: 135%;
+  left: -57px !important;
+}
