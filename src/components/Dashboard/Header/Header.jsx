@@ -1,7 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {React, useState} from "react";
-import { useDispatch } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -11,12 +9,20 @@ import Button from "react-bootstrap/Button";
 import styles from "./Header.module.css";
 import { logout } from "../../../store/Auth";
 import { useNavigate, createSearchParams } from "react-router-dom";
+import { RxHamburgerMenu } from "react-icons/rx";
+import Inner from "../InnerBar/Inner";
+
 
 const Header = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const userEmail = useSelector((state) => state.auth.email);
+  const [isHamburgerActive, setIsHamburgerActive] = useState(false);
+
+  const toggleHamburger = () => {
+    setIsHamburgerActive(!isHamburgerActive);
+  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -39,6 +45,7 @@ const Header = () => {
 
   return (
     <Navbar expand="lg" className="fixed-top shadow-sm bg-white">
+      <div>{isHamburgerActive && <Inner hamburger={false} />} </div>
       <Container>
         <img
           className={styles.logo}
@@ -46,8 +53,21 @@ const Header = () => {
           alt="logo"
         />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        
+
         <Navbar.Collapse className="justify-content-end">
+          <div
+            className={styles.hamburgerMenu}
+            isActive={(match) => {
+              if (match) {
+                setIsHamburgerActive(true);
+              } else {
+                setIsHamburgerActive(false);
+              }
+              return match !== null;
+            }}
+          >
+            <RxHamburgerMenu onClick={toggleHamburger} />
+          </div>
           <Nav>
             <Form className="d-flex">
               <Form.Control

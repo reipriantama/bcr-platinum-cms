@@ -4,7 +4,7 @@ const storedDefaultEmailText =
   localStorage.getItem("defaultEmailText") || "Admin";
 
 const initialState = {
-  email: "",
+  email: storedDefaultEmailText,
   role: "",
   token: localStorage.getItem("token") ? localStorage.getItem("token") : "",
   defaultEmailText: storedDefaultEmailText,
@@ -22,6 +22,7 @@ const auth = createSlice({
       state.token = access_token;
 
       localStorage.setItem("token", access_token);
+      localStorage.setItem("defaultEmailText", email)
     },
     logout: (state) => {
       state.emailAddress = "";
