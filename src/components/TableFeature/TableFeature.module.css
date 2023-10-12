@@ -1,5 +1,5 @@
 .tableContainer {
-  margin-top: 178px;
+  margin-top: 80px;
   margin-left: 320px;
   margin-bottom: 49px;
   color: var(--neutral-01, #000);
@@ -35,19 +35,14 @@
   border-color: black !important;
 }
 
-.tableContainer .react-bootstrap-table .table tbody tr:first-child {
-  background-color: aquamarine !important; /* Ganti dengan warna latar yang Anda inginkan */
-  color: black !important; /* Ganti dengan warna teks yang Anda inginkan */
-}
-
 thead {
-  background: #CFD4ED !important;
+  background: #cfd4ed !important;
 }
 
 :global(.table) {
   --bs-table-bg: none;
 }
 
-td{
+td {
   --bs-table-bg-type: var(--bs-table-striped-bg);
 }

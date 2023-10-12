@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+const storedDefaultEmailText =
+  localStorage.getItem("defaultEmailText") || "Admin";
+
 const initialState = {
   email: "",
   role: "",
-  token: localStorage.getItem('token')
-  ? localStorage.getItem('token')
-  : ""
-
+  token: localStorage.getItem("token") ? localStorage.getItem("token") : "",
+  defaultEmailText: storedDefaultEmailText,
 };
 
 const auth = createSlice({

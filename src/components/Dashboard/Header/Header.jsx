@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -15,6 +15,7 @@ const Header = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const userEmail = useSelector((state) => state.auth.email);
 
   const handleLogout = () => {
     dispatch(logout());
@@ -70,7 +71,7 @@ const Header = () => {
                 Search
               </Button>
             </Form>
-            <Nav.Link href="#link">Admin</Nav.Link>
+            <Nav.Link href="#link">{userEmail}</Nav.Link>
             <NavDropdown id="basic-nav-dropdown">
               <NavDropdown.Item
                 href="#action/3.1"
