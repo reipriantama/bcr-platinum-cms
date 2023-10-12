@@ -1,4 +1,4 @@
-import React from "react";
+import {React, useState} from "react";
 import { useDispatch } from "react-redux";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
@@ -9,7 +9,6 @@ import Button from "react-bootstrap/Button";
 import styles from "./Header.module.css";
 import { logout } from "../../../store/Auth";
 import { useNavigate, createSearchParams } from "react-router-dom";
-import { useState } from "react";
 
 const Header = () => {
   const [name, setName] = useState("");
@@ -44,13 +43,7 @@ const Header = () => {
           alt="logo"
         />
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Nav.Link href="#home">
-          <img
-            className={styles.menuButton}
-            src={`${process.env.PUBLIC_URL}/Assets/Dashboard/fi_menu.png`}
-            alt="menu"
-          />
-        </Nav.Link>
+        
         <Navbar.Collapse className="justify-content-end">
           <Nav>
             <Form className="d-flex">
