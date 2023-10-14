@@ -21,3 +21,8 @@
   top: 135%;
   left: -57px !important;
 }
+
+.hamburgerMenu{
+  margin-right: 560px;
+  float: inline-end;
+}

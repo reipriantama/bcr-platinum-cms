@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 const BreadcrumbsFeature = () => {
   const location = useLocation();
 
+  const capitalizeFirstLetter = (str) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
+
   let currentLink = "";
 
   const crumbs = location.pathname
@@ -14,6 +18,7 @@ const BreadcrumbsFeature = () => {
     .filter((crumb) => crumb !== "")
     .map((crumb) => {
       currentLink = +`/${crumb}`;
+      const capitalizedCrumb = capitalizeFirstLetter(crumb);
       return (
         <div key={crumb}>
           <Link
@@ -25,7 +30,7 @@ const BreadcrumbsFeature = () => {
               color: "inherit",
             }}
           >
-            {crumb}
+            {capitalizedCrumb}
           </Link>
         </div>
       );
