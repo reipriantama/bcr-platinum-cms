@@ -1,25 +1,10 @@
 .container {
   margin-top: 56px;
-}
-
-.dashboardTitle {
-  display: flex;
-  gap: 4px;
-
-  margin-left: 315px;
-  padding-top: 32px;
-
-  color: var(--neutral-01, #000);
-  font-family: Arial;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: 18px; /* 150% */
+  margin-left: 320px;
 }
 
 .dashboardChart {
   margin-top: 60px;
-  margin-left: 327px;
 }
 
 .dashboardVisualization {
@@ -31,17 +16,12 @@
   line-height: 20px;
   gap: 8px;
   margin-bottom: 20px;
-  margin-left: 20px;
 }
 
 .dashboardIcon {
   width: 4px;
   height: 24px;
   background: var(--primary-dark-blue-04, #0d28a6);
-}
-
-.dropDownWrap {
-  margin-left: 20px;
 }
 
 .monthDrop {
