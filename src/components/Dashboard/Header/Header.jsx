@@ -12,7 +12,6 @@ import { useNavigate, createSearchParams } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Inner from "../InnerBar/Inner";
 
-
 const Header = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
@@ -66,7 +65,10 @@ const Header = () => {
               return match !== null;
             }}
           >
-            <RxHamburgerMenu onClick={toggleHamburger} />
+            <RxHamburgerMenu
+              onClick={toggleHamburger}
+              style={{ cursor: "pointer" }}
+            />
           </div>
           <Nav>
             <Form className="d-flex">

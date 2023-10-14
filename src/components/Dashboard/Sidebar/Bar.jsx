@@ -14,12 +14,15 @@ const Bar = () => {
   };
 
   const toggleCar = () => {
-    setIsHomeActive(!isCarActive);
+    setIsCarActive(!isCarActive);
   };
 
   return (
     <div className={styles.sideNav}>
-      <div>{isHomeActive && <Inner cars={false} />}</div>
+      <div>
+        {isHomeActive && <Inner cars={false} />}
+        {isCarActive && <Inner cars={false} />}
+      </div>
       <div>
         <div className="d-flex w-100 flex-column align-items-center justify-content-center mt-3">
           <NavLink
