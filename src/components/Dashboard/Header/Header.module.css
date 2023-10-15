@@ -18,11 +18,11 @@
 }
 
 :global(.dropdown-menu) {
-  top: 135%;
-  left: -57px !important;
+  top: 125% !important;
+  left: -109px !important;
 }
 
-.hamburgerMenu{
+.hamburgerMenu {
   margin-right: 560px;
   float: inline-end;
 }

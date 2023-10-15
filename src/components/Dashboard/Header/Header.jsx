@@ -18,6 +18,7 @@ const Header = () => {
   const navigate = useNavigate();
   const userEmail = useSelector((state) => state.auth.email);
   const [isHamburgerActive, setIsHamburgerActive] = useState(false);
+  
 
   const toggleHamburger = () => {
     setIsHamburgerActive(!isHamburgerActive);

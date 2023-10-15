@@ -134,7 +134,7 @@ const ChartFeature = () => {
             Go
           </Button>
 
-          <Dropdown.Menu>
+          <Dropdown.Menu className={styles.dropDownMenu}>
             {years.map((year) => (
               <React.Fragment key={year}>
                 {months.map((month, index) => (
