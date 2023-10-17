@@ -18,7 +18,6 @@ const Header = () => {
   const navigate = useNavigate();
   const userEmail = useSelector((state) => state.auth.email);
   const [isHamburgerActive, setIsHamburgerActive] = useState(false);
-  
 
   const toggleHamburger = () => {
     setIsHamburgerActive(!isHamburgerActive);
@@ -33,7 +32,8 @@ const Header = () => {
     setName(event.target.value.toLowerCase());
   };
 
-  const handleSearch = async () => {
+  const handleSearch = async (e) => {
+    e.preventDefault()
     console.log("Searching for:", name);
     navigate({
       pathname: "/cars",
@@ -72,7 +72,7 @@ const Header = () => {
             />
           </div>
           <Nav>
-            <Form className="d-flex">
+            <Form className="d-flex" onSubmit={handleSearch}>
               <Form.Control
                 type="search"
                 placeholder="Search"

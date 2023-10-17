@@ -152,7 +152,6 @@ const ChartFeature = () => {
             ))}
           </Dropdown.Menu>
         </Dropdown>
-        {/* Tampilkan grafik jika data tersedia */}
         {chartData.length > 0 && (
           <div id="chart">
             <ReactApexChart
