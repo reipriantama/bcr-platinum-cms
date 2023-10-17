@@ -32,6 +32,11 @@
   padding: 8px 12px;
 }
 
+.dropDownMenu{
+  top: 0 !important;
+  left: 0 !important;
+}
+
 .dropToggle {
   border: 1px solid var(--neutral-02, #d0d0d0);
   border-radius: 0px 2px 2px 0px; /* Biarkan border pada sisi kanan */

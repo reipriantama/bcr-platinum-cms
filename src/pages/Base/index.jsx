@@ -7,10 +7,13 @@ import Bar from "../../components/Dashboard/Sidebar/Bar";
 
 const Base = () => {
   return (
-    <div data-testid="base" style={{ background: "#F4F5F7" }}>     
+    <div
+      data-testid="base"
+      style={{ background: "#F4F5F7", paddingBottom: "52px" }}
+    >
       <Bar />
       {/* <Inner/> */}
-      <Header /> 
+      <Header />
       <BreadcrumbsFeature />
       <Outlet />
     </div>

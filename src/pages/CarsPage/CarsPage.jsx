@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import CarList from "../../components/CarList/CarList";
 
-const CarsPage = () => {
+const CarsPage = ({ searchResults }) => {
   return (
     <div>
-      
+      <CarList cars={searchResults} />
     </div>
-  )
-}
+  );
+};
 
-export default CarsPage
+export default CarsPage;
