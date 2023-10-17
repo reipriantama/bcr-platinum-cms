@@ -3,6 +3,7 @@ import Base from "../pages/Base";
 import LoginPage from "../pages/LoginPage/LoginPage";
 import CarsPage from "../pages/CarsPage/CarsPage";
 import DashboardPage from "../pages/DashboardPage/DashboardPage";
+import EditCarsPage from "../pages/EditCarsPage/EditCarsPage";
 
 const routes = [
   {
@@ -30,6 +31,16 @@ const routes = [
       {
         path: "",
         element: <CarsPage />,
+      },
+    ],
+  },
+  {
+    path: "edit-cars",
+    element: <Base />,
+    children: [
+      {
+        path: "",
+        element: <EditCarsPage />,
       },
     ],
   },
