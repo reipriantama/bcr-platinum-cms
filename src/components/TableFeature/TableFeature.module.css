@@ -46,3 +46,8 @@ thead {
 td {
   --bs-table-bg-type: var(--bs-table-striped-bg);
 }
+
+.dropDownMenu {
+  top: 0 !important;
+  left: 0 !important;
+}
