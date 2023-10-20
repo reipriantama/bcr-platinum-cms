@@ -35,7 +35,7 @@ const routes = [
     ],
   },
   {
-    path: "edit-cars",
+    path: "edit/:carId",
     element: <Base />,
     children: [
       {
