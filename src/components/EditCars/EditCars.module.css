@@ -1,4 +1,8 @@
 .container {
-    margin-top: 56px;
-    margin-left: 320px;
-  }
+  margin-top: 56px;
+  margin-left: 320px;
+}
+
+.formEdit {
+  border-radius: 2px !important;
+}
