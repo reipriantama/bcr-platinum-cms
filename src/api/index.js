@@ -8,6 +8,7 @@ const api = {
   getCarById: (id, queryParams) =>
     handler.get(`/admin/car/${id}`, { params: queryParams }),
   putCarById: (id, body) => handler.put(`/admin/car/${id}`, body),
+  deleteCarById: (id) => handler.delete(`/admin/car/${id}`),
   getReports: (queryParams) =>
     handler.get("/admin/order/reports", { params: queryParams }),
   getOrder: (queryParams) =>

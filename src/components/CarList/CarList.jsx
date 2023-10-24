@@ -13,7 +13,10 @@ const CarList = ({ search }) => {
   const [cars, setCars] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false); // State untuk menampilkan modal
-  const [selectedCarToDelete, setSelectedCarToDelete] = useState(null); // State untuk mobil yang akan dihapus
+  // const [selectedCarToDelete, setSelectedCarToDelete] = useState(null); // State untuk mobil yang akan dihapus
+  const [carToDeleteId, setCarToDeleteId] = useState(null);
+  const [deleteSuccess, setdeleteSuccess] = useState(true);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -65,13 +68,13 @@ const CarList = ({ search }) => {
     return formatter.format(angka);
   }
 
-  const handleShowDeleteModal = (car) => {
-    setSelectedCarToDelete(car);
+  const handleShowDeleteModal = (carId) => {
+    setCarToDeleteId(carId);
     setShowDeleteModal(true);
   };
 
   const handleCloseDeleteModal = () => {
-    setSelectedCarToDelete(null);
+    setCarToDeleteId(null);
     setShowDeleteModal(false);
   };
 
@@ -81,8 +84,27 @@ const CarList = ({ search }) => {
     console.log(car);
   };
 
+  const handleDeleteCar = async () => {
+    try {
+      if (carToDeleteId) {
+        const response = await api.deleteCarById(carToDeleteId);
+        console.log("Data Mobil dihapus", response);
+        // Tutup modal setelah penghapusan berhasil
+        handleCloseDeleteModal();
+        setdeleteSuccess(true);
+      }
+    } catch (error) {
+      console.error("Gagal menghapus data", error);
+    }
+  };
+
   return (
     <div className={styles.container}>
+      {deleteSuccess && (
+        <div className="alert alert-success" role="alert">
+          Data berhasil dihapus!
+        </div>
+      )}
       <div className={styles.titleWrap}>
         <div className={styles.listCarTitle}>List Car</div>
         <Button variant="primary">
@@ -154,7 +176,7 @@ const CarList = ({ search }) => {
                 <Button
                   variant="outline-danger"
                   className={styles.cardButton}
-                  onClick={handleShowDeleteModal}
+                  onClick={() => handleShowDeleteModal(car.id)}
                 >
                   <AiOutlineDelete /> Delete
                 </Button>
@@ -189,8 +211,7 @@ const CarList = ({ search }) => {
               style={{ marginLeft: "50px" }}
             />
             <div>
-              Menghapus Data Mobil{""}{" "}
-              {selectedCarToDelete && selectedCarToDelete.name}
+              Menghapus Data Mobil{""} {carToDeleteId && carToDeleteId.name}
             </div>
           </Modal.Title>
         </Modal.Header>
@@ -199,7 +220,9 @@ const CarList = ({ search }) => {
           menghapus?
         </Modal.Body>
         <Modal.Footer className="justify-content-md-center">
-          <Button variant="danger">Delete</Button>
+          <Button variant="danger" onClick={handleDeleteCar}>
+            Delete
+          </Button>
           <Button variant="secondary" onClick={handleCloseDeleteModal}>
             Cancel
           </Button>
