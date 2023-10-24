@@ -84,6 +84,7 @@ const CarList = ({ search }) => {
     console.log(car);
   };
 
+<<<<<<< HEAD
   const handleDeleteCar = async () => {
     try {
       if (carToDeleteId) {
@@ -98,6 +99,8 @@ const CarList = ({ search }) => {
     }
   };
 
+=======
+>>>>>>> 828cc69b6d54fb622c5dae895469d9f742d5088d
   return (
     <div className={styles.container}>
       {deleteSuccess && (
