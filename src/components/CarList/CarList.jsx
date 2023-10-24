@@ -7,12 +7,14 @@ import { AiOutlineClockCircle, AiOutlineDelete } from "react-icons/ai";
 import api from "../../api";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
+import { useNavigate } from "react-router";
 
 const CarList = ({ search }) => {
   const [cars, setCars] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
   const [showDeleteModal, setShowDeleteModal] = useState(false); // State untuk menampilkan modal
   const [selectedCarToDelete, setSelectedCarToDelete] = useState(null); // State untuk mobil yang akan dihapus
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,6 +26,7 @@ const CarList = ({ search }) => {
         console.log(search);
         if (response.status === 200) {
           const carsData = response.data.cars;
+          console.log(response.data);
           setCars(carsData);
           console.log(carsData);
         } else {
@@ -70,6 +73,12 @@ const CarList = ({ search }) => {
   const handleCloseDeleteModal = () => {
     setSelectedCarToDelete(null);
     setShowDeleteModal(false);
+  };
+
+  const handleClickEdit = (e, car) => {
+    e.preventDefault();
+    navigate(`/edit/${car.id}`);
+    console.log(car);
   };
 
   return (
@@ -126,7 +135,9 @@ const CarList = ({ search }) => {
               padding: "24px",
             }}
           >
-            <Card.Img variant="top" src={car.image} style={{}} />
+            <div style={{ height: "222px" }}>
+              <Card.Img variant="top" src={car.image} style={{}} />
+            </div>
             <Card.Body>
               <Card.Text>{car.name}</Card.Text>
               <Card.Title>{`${formatRupiah(car.price)} / hari`}</Card.Title>
@@ -147,7 +158,11 @@ const CarList = ({ search }) => {
                 >
                   <AiOutlineDelete /> Delete
                 </Button>
-                <Button variant="outline-success" className={styles.cardButton}>
+                <Button
+                  onClick={(e) => handleClickEdit(e, car)}
+                  variant="outline-success"
+                  className={styles.cardButton}
+                >
                   <FiEdit /> Edit
                 </Button>
               </div>

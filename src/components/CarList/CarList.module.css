@@ -3,18 +3,17 @@
   margin-left: 320px;
 }
 
-.titleWrap{
-    align-items: center;
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
+.titleWrap {
+  align-items: center;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
 
-    margin-right: 24px;
-
+  margin-right: 24px;
 }
 
 :global(.btn-primary) {
-    border-radius: 2px;
+  border-radius: 2px;
 }
 
 .listCarTitle {
@@ -39,16 +38,16 @@
   border-radius: 2px;
 }
 
-.cardWrap{
-    display: flex;
-    gap: 24px;
+.cardWrap {
+  display: flex;
+  gap: 24px;
 }
 
-.cardButtonContainer{
-    display: flex;
-    gap: 16px;
+.cardButtonContainer {
+  display: flex;
+  gap: 16px;
 }
 
 .cardButton {
-    width: 143px;
+  width: 143px;
 }
