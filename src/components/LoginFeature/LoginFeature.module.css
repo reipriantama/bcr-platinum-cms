@@ -66,3 +66,7 @@
   font-weight: 400;
   line-height: 18px; /* 150% */
 }
+
+.loading {
+  width: 370px;
+}

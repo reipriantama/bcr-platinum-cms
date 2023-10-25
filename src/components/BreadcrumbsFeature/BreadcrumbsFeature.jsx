@@ -39,7 +39,7 @@ const BreadcrumbsFeature = () => {
   return (
     <div>
       <div className={styles.breadcrumbsTitle}>
-        <div>{crumbs}</div>
+        <div>Dashboard</div>
         <div>
           {" "}
           <FaChevronRight />{" "}
