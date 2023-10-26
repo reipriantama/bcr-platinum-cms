@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "./Header.module.css";
 import { logout } from "../../../store/Auth";
-import { useNavigate, createSearchParams } from "react-router-dom";
+import { useNavigate, useLocation, createSearchParams } from "react-router-dom";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Inner from "../InnerBar/Inner";
 
@@ -16,9 +16,9 @@ const Header = () => {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const userEmail = useSelector((state) => state.auth.email);
   const [isHamburgerActive, setIsHamburgerActive] = useState(false);
-  
 
   const toggleHamburger = () => {
     setIsHamburgerActive(!isHamburgerActive);
@@ -34,7 +34,7 @@ const Header = () => {
   };
 
   const handleSearch = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     console.log("Searching for:", name);
     navigate({
       pathname: "/cars",
@@ -46,7 +46,6 @@ const Header = () => {
 
   return (
     <Navbar expand="lg" className="fixed-top shadow-sm bg-white">
-      <div>{isHamburgerActive && <Inner hamburger={false} />} </div>
       <Container>
         <img
           className={styles.logo}
@@ -56,21 +55,14 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
         <Navbar.Collapse className="justify-content-end">
-          <div
-            className={styles.hamburgerMenu}
-            isActive={(match) => {
-              if (match) {
-                setIsHamburgerActive(true);
-              } else {
-                setIsHamburgerActive(false);
-              }
-              return match !== null;
-            }}
-          >
+          <div className={styles.hamburgerMenu}>
             <RxHamburgerMenu
               onClick={toggleHamburger}
               style={{ cursor: "pointer" }}
             />
+            {isHamburgerActive && (
+              <Inner cars={location.pathname === "/cars"} />
+            )}
           </div>
           <Nav>
             <Form className="d-flex" onSubmit={handleSearch}>

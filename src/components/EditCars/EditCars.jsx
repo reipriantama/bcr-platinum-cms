@@ -6,9 +6,12 @@ import Button from "react-bootstrap/Button";
 import { FiUpload } from "react-icons/fi";
 import api from "../../api";
 import moment from "moment";
+import { useDispatch } from "react-redux";
+import { setEditCarSuccess } from "../../store/AddNewCar";
 
 const EditCars = (props) => {
   const { id } = props;
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [editCarData, setEditCarData] = useState({
     name: "",
@@ -76,6 +79,7 @@ const EditCars = (props) => {
 
       const response = await api.putCarById(id, formData);
       console.log("Data Mobil diubah", response);
+      dispatch(setEditCarSuccess(true));
       navigate("/cars");
     } catch (error) {
       console.log("Gagal edit data", error);

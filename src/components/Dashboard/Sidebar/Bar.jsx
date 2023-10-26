@@ -6,33 +6,46 @@ import * as FaIcons from "react-icons/fa";
 import Inner from "../../Dashboard/InnerBar/Inner";
 
 const Bar = () => {
-  const [isHomeActive, setIsHomeActive] = useState(false);
+  const [isHomeActive, setIsHomeActive] = useState(true);
   const [isCarActive, setIsCarActive] = useState(false);
 
   const toggleHome = () => {
+    // Toggle the state for "Dashboard"
     setIsHomeActive(!isHomeActive);
+
+    // If "Dashboard" is clicked again, close the inner component
+    if (isHomeActive) {
+      setIsHomeActive(false);
+    } else {
+      setIsCarActive(false); // Close "Cars" if it's open
+    }
   };
 
   const toggleCar = () => {
+    // Toggle the state for "Cars"
     setIsCarActive(!isCarActive);
+
+    // If "Cars" is clicked, close "Dashboard"
+    if (isCarActive) {
+      setIsCarActive(false);
+    } else {
+      setIsHomeActive(false); // Close "Dashboard" if it's open
+    }
   };
 
   return (
     <div className={styles.sideNav}>
       <div>
         {isHomeActive && <Inner cars={false} />}
-        {isCarActive && <Inner cars={false} />}
+        {isCarActive && <Inner cars={true} />}
       </div>
       <div>
         <div className="d-flex w-100 flex-column align-items-center justify-content-center mt-3">
           <NavLink
-            to="/dashboard"
             className={`w-100 py-1`}
             isActive={(match) => {
               if (match) {
-                setIsHomeActive(true);
-              } else {
-                setIsHomeActive(false);
+                toggleHome();
               }
               return match !== null;
             }}
@@ -52,13 +65,10 @@ const Bar = () => {
         </div>
         <div className="d-flex w-100 flex-column align-items-center justify-content-center">
           <NavLink
-            to="/cars"
             className="w-100 py-1"
             isActive={(match) => {
               if (match) {
-                setIsCarActive(true);
-              } else {
-                setIsCarActive(false);
+                toggleCar();
               }
               return match !== null;
             }}
