@@ -9,7 +9,7 @@ import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router";
 import { useDispatch, useSelector } from "react-redux";
-import { setAddCarSuccess } from "../../store/AddNewCar";
+import { setAddCarSuccess, setEditCarSuccess } from "../../store/AddNewCar";
 
 const CarList = ({ search }) => {
   const [cars, setCars] = useState([]);
@@ -19,6 +19,7 @@ const CarList = ({ search }) => {
   const [deleteSuccess, setdeleteSuccess] = useState(false);
   const navigate = useNavigate();
   const addCarSuccess = useSelector((state) => state.cars.addCarSuccess);
+  const editCarSuccess = useSelector((state) => state.cars.editCarSuccess);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -45,13 +46,14 @@ const CarList = ({ search }) => {
   }, [search, selectedCategory, deleteSuccess]);
 
   useEffect(() => {
-    if (addCarSuccess) {
+    if (addCarSuccess || editCarSuccess) {
       // Reset status addCarSuccess setelah beberapa saat
       setTimeout(() => {
         dispatch(setAddCarSuccess(false));
-      }, 3000); // Reset setelah 3 detik
+        dispatch(setEditCarSuccess(false));
+      }, 5000); // Reset setelah 3 detik
     }
-  }, [addCarSuccess, dispatch]);
+  }, [addCarSuccess, editCarSuccess, dispatch]);
 
   const getCategoryLabel = (category) => {
     switch (category) {
@@ -102,6 +104,9 @@ const CarList = ({ search }) => {
         console.log("Data Mobil dihapus", response);
         handleCloseDeleteModal();
         setdeleteSuccess(true);
+        setTimeout(() => {
+          setdeleteSuccess(false);
+        }, 5000);
       }
     } catch (error) {
       console.error("Gagal menghapus data", error);
@@ -120,6 +125,14 @@ const CarList = ({ search }) => {
           role="alert"
         >
           Data Berhasil Disimpan!
+        </div>
+      )}
+      {editCarSuccess && (
+        <div
+          className={`${styles.alertAdd} alert alert-success d-flex justify-content-center`}
+          role="alert"
+        >
+          Data Berhasil Diedit!
         </div>
       )}
       {deleteSuccess && (
