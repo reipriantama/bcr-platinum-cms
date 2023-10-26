@@ -102,7 +102,9 @@ const LoginFeature = () => {
               />
             </Form.Group>
             {loading ? (
-              <div className={styles.loading}>
+              <div
+                className={`${styles.loading} d-flex justify-content-center`}
+              >
                 <Spinner animation="border" role="status">
                   <span className="visually-hidden">Loading...</span>
                 </Spinner>

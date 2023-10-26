@@ -3,6 +3,22 @@
   margin-left: 320px;
 }
 
+.alertAdd {
+  width: 550px;
+  background-color: #73ca5c;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  color: white;
+  margin-left: 210px;
+}
+
+.alertDelete {
+  width: 550px;
+  background-color: black;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  color: white;
+  margin-left: 210px;
+}
+
 .titleWrap {
   align-items: center;
   display: flex;

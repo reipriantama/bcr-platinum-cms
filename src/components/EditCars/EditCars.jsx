@@ -32,6 +32,7 @@ const EditCars = (props) => {
       try {
         const response = await api.getCarById(id);
         const carData = response.data;
+        console.log(response);
         setEditCarData(carData);
         console.log(carData);
       } catch (error) {
@@ -98,7 +99,10 @@ const EditCars = (props) => {
     <div className={styles.container}>
       <h3 className="fw-bold">Edit Car</h3>
       {uploadSuccess && (
-        <div className="alert alert-success" role="alert">
+        <div
+          className={`${styles.alertEdit} alert alert-success d-flex justify-content-center`}
+          role="alert"
+        >
           Foto berhasil diupload.
         </div>
       )}

@@ -8,16 +8,18 @@ import api from "../../api";
 import moment from "moment";
 import { Modal } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import { useDispatch, useSelector } from "react-redux";
+import { setAddCarSuccess } from "../../store/AddNewCar";
 
 const CarList = ({ search }) => {
   const [cars, setCars] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // State untuk menampilkan modal
-  // const [selectedCarToDelete, setSelectedCarToDelete] = useState(null); // State untuk mobil yang akan dihapus
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [carToDeleteId, setCarToDeleteId] = useState(null);
-  const [deleteSuccess, setdeleteSuccess] = useState(true);
-
+  const [deleteSuccess, setdeleteSuccess] = useState(false);
   const navigate = useNavigate();
+  const addCarSuccess = useSelector((state) => state.cars.addCarSuccess);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,7 +42,16 @@ const CarList = ({ search }) => {
       }
     };
     fetchData();
-  }, [search, selectedCategory]);
+  }, [search, selectedCategory, deleteSuccess]);
+
+  useEffect(() => {
+    if (addCarSuccess) {
+      // Reset status addCarSuccess setelah beberapa saat
+      setTimeout(() => {
+        dispatch(setAddCarSuccess(false));
+      }, 3000); // Reset setelah 3 detik
+    }
+  }, [addCarSuccess, dispatch]);
 
   const getCategoryLabel = (category) => {
     switch (category) {
@@ -89,7 +100,6 @@ const CarList = ({ search }) => {
       if (carToDeleteId) {
         const response = await api.deleteCarById(carToDeleteId);
         console.log("Data Mobil dihapus", response);
-        // Tutup modal setelah penghapusan berhasil
         handleCloseDeleteModal();
         setdeleteSuccess(true);
       }
@@ -98,16 +108,31 @@ const CarList = ({ search }) => {
     }
   };
 
+  const handleAddCar = () => {
+    navigate("/add-cars");
+  };
+
   return (
     <div className={styles.container}>
+      {addCarSuccess && (
+        <div
+          className={`${styles.alertAdd} alert alert-success d-flex justify-content-center`}
+          role="alert"
+        >
+          Data Berhasil Disimpan!
+        </div>
+      )}
       {deleteSuccess && (
-        <div className="alert alert-success" role="alert">
-          Data berhasil dihapus!
+        <div
+          className={`${styles.alertDelete} alert alert-secondary d-flex justify-content-center`}
+          role="alert"
+        >
+          Data Berhasil Dihapus!
         </div>
       )}
       <div className={styles.titleWrap}>
         <div className={styles.listCarTitle}>List Car</div>
-        <Button variant="primary">
+        <Button variant="primary" onClick={handleAddCar}>
           <FiPlus /> Add New Car
         </Button>
       </div>
