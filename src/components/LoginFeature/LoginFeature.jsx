@@ -72,7 +72,7 @@ const LoginFeature = () => {
       <div className={styles.backgroundImage}>
         <div className={`${styles.container} bg-white float-end`}>
           <div className={styles.logoLogin}></div>
-          <div className={styles.titleLogin}>Welcome, Admin BCR</div>
+          <div className={styles.titleLogin}>Welcome, Kelompok 2</div>
           {loginFailed && (
             <div className={styles.loginFailedMessage}>
               Masukkan username dan password yang benar. Perhatikan penggunaan

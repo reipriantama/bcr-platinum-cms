@@ -28,6 +28,7 @@ const CarList = ({ search }) => {
         const response = await api.getCars({
           name: search,
           category: selectedCategory,
+          pageSize: 50,
         });
         console.log(search);
         if (response.status === 200) {
