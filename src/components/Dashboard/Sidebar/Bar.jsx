@@ -10,26 +10,22 @@ const Bar = () => {
   const [isCarActive, setIsCarActive] = useState(false);
 
   const toggleHome = () => {
-    // Toggle the state for "Dashboard"
     setIsHomeActive(!isHomeActive);
 
-    // If "Dashboard" is clicked again, close the inner component
     if (isHomeActive) {
       setIsHomeActive(false);
     } else {
-      setIsCarActive(false); // Close "Cars" if it's open
+      setIsCarActive(false);
     }
   };
 
   const toggleCar = () => {
-    // Toggle the state for "Cars"
     setIsCarActive(!isCarActive);
 
-    // If "Cars" is clicked, close "Dashboard"
     if (isCarActive) {
       setIsCarActive(false);
     } else {
-      setIsHomeActive(false); // Close "Dashboard" if it's open
+      setIsHomeActive(false);
     }
   };
 
