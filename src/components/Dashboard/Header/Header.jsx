@@ -75,6 +75,7 @@ const Header = () => {
               />
               <Button
                 role="button"
+                data-testid="email-logout"
                 className={styles.searchButton}
                 variant="outline-primary"
                 onClick={handleSearch}
