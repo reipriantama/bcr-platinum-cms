@@ -213,6 +213,7 @@ const CarList = ({ search }) => {
               </Card.Text>
               <div className={styles.cardButtonContainer}>
                 <Button
+                  data-testid="delete-button-modal"
                   variant="outline-danger"
                   className={styles.cardButton}
                   onClick={() => handleShowDeleteModal(car.id)}
@@ -232,6 +233,7 @@ const CarList = ({ search }) => {
         ))}
       </div>
       <Modal
+        data-testid="modal-delete"
         show={showDeleteModal}
         onHide={handleCloseDeleteModal}
         backdrop="static"
