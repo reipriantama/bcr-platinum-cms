@@ -11,18 +11,33 @@ const BreadcrumbsFeature = () => {
     return str.charAt(0).toUpperCase() + str.slice(1);
   };
 
-  let currentLink = "";
+  const getPathName = () => {
+    const path = location.pathname;
+    if (path === "/dashboard") {
+      return "Dashboard";
+    } else if (path === "/cars") {
+      return "List Cars";
+    } else if (path === "/edit") {
+      return "Edit"
+    }
+    return capitalizeFirstLetter(
+      path
+        .split("/")
+        .filter((crumb) => crumb !== "")
+        .pop()
+    );
+  };
 
   const crumbs = location.pathname
     .split("/")
     .filter((crumb) => crumb !== "")
-    .map((crumb) => {
-      currentLink = +`/${crumb}`;
-      const capitalizedCrumb = capitalizeFirstLetter(crumb);
+    .map((crumb, index, arr) => {
+      const capitalizedCrumb =
+        index === arr.length - 1 ? getPathName() : capitalizeFirstLetter(crumb);
       return (
         <div key={crumb}>
           <Link
-            to={currentLink}
+            to={`/${crumb}`}
             style={{
               fontWeight: "300",
               lineHeight: "18px",
@@ -38,14 +53,16 @@ const BreadcrumbsFeature = () => {
 
   return (
     <div>
-      <div className={styles.breadcrumbsTitle}>
-        <div>{crumbs}</div>
-        <div>
-          {" "}
-          <FaChevronRight />{" "}
+      {location.pathname.startsWith("/cars/edit") ? null : (
+        <div className={styles.breadcrumbsTitle}>
+          <div>{crumbs}</div>
+          <div>
+            {" "}
+            <FaChevronRight />{" "}
+          </div>
+          {getPathName()}
         </div>
-        {crumbs}
-      </div>
+      )}
     </div>
   );
 };
